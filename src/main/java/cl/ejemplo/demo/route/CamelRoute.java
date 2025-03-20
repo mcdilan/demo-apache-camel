@@ -4,7 +4,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 /**
- * Clase CamelRoute - Configura y maneja un servicio REST con Apache Camel.
+ * Clase CamelRoute - Configura y maneja un servicio REST con Apache Camel con component platform-http.
  * Esta clase define una ruta Camel que responde a solicitudes GET en el endpoint "/api/hello".
  *
  * Autor: @dapavez
@@ -37,6 +37,6 @@ public class CamelRoute extends RouteBuilder {
         // Ruta interna que maneja la lógica de la respuesta para "direct:helloRoute".
         from("direct:helloRoute")
             .setHeader("Content-Type", constant("text/plain"))  // Establece el encabezado 'Content-Type' como 'text/plain'.
-            .setBody(constant("Hola desde Apache Camel"));  // Establece el cuerpo de la respuesta como un mensaje fijo.
+            .setBody(constant("Hola Mundo con Spring Boot 3.4.3 y Apache Camel usando platform-http"));  // Establece el cuerpo de la respuesta como un mensaje fijo.
     }
 }
