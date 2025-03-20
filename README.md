@@ -19,4 +19,4 @@ La clase `CamelRoute` configura un servicio REST utilizando Apache Camel y Sprin
 Clona este repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/mcdilan/tu_repositorio.git
+git clone https://github.com/mcdilan/demo-apache-camel.git
