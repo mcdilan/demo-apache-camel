@@ -1,10 +1,10 @@
 # 🚀 API REST con Apache Camel y OpenAPI
 
-Este proyecto implementa una API REST utilizando **Apache Camel** y **Spring Boot**, con documentación generada automáticamente mediante **OpenAPI** y **Springdoc**.
+Este proyecto implementa una API REST utilizando **Spring Boot**, **Apache Camel** y componente **platform-http** para exponer un servicio REST simple, con documentación generada automáticamente mediante **OpenAPI** y **Springdoc**.
 
 ## 📌 Descripción
 
-La API expone un endpoint REST `/api/hello` que responde a solicitudes `GET`, devolviendo un mensaje en `text/plain`. La documentación se genera de forma automática y está disponible en:
+La API expone un endpoint REST `/api/hello` que responde a solicitudes `GET`, devolviendo un mensaje en `application/json`. La documentación se genera de forma automática y está disponible en:
 
 - **Swagger UI**: [`http://localhost:8080/swagger-ui/index.html`](http://localhost:8080/swagger-ui/index.html)
 - **Especificación OpenAPI**: [`http://localhost:8080/api-docs`](http://localhost:8080/api-docs)

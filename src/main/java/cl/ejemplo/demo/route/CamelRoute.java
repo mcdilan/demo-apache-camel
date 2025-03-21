@@ -52,9 +52,23 @@ public class CamelRoute extends RouteBuilder {
             .to("direct:helloRoute"); // Redirige la solicitud al endpoint interno "direct:helloRoute". 
         
         // Ruta interna que maneja la lógica de la respuesta para "direct:helloRoute".
-        from("direct:helloRoute")
-            .setHeader("Content-Type", constant("text/plain"))  // Establece el encabezado 'Content-Type' como 'text/plain'.
-            .setBody(constant("Hola Mundo con Spring Boot 3.4.3 y Apache Camel usando platform-http"));  // Establece el cuerpo de la respuesta como un mensaje fijo.
-
+        from("direct:miRuta")
+	        .doTry()
+	            .process(exchange -> {
+	                // Configura la respuesta con tipo de contenido JSON
+	                exchange.getIn().setHeader("Content-Type", "application/json");
+	                // Establece el cuerpo de la respuesta con un mensaje de saludo
+	                exchange.getIn().setBody(Map.of("mensaje", "¡Hola Mundo con Spring Boot 3.4.3 y Apache Camel usando Servlet!"));
+	            })
+	        .doCatch(Exception.class) // Manejo de excepciones
+	            .process(exchange -> {
+	                // Configura la respuesta en caso de error con tipo de contenido de texto plano
+	                exchange.getIn().setHeader("Content-Type", "text/plain");
+	                // Mensaje de error genérico
+	                exchange.getIn().setBody("Ocurrió un error inesperado.");
+	                // Código de respuesta HTTP 500 (Error interno del servidor)
+	                exchange.getIn().setHeader("CamelHttpResponseCode", 500);
+	            })
+	        .end(); // Fin del bloque try-catch
     }
 }
